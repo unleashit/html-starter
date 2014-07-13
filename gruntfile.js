@@ -66,7 +66,7 @@ module.exports = function(grunt) {
           compass: true
         },
         files: {
-          'styles.css': 'styles.scss'
+          'css/styles.css': 'css/styles.scss'
         }
       }
     },
@@ -76,19 +76,31 @@ module.exports = function(grunt) {
             dest: 'js/scripts.min.js'
         }
     },
-    image_resize: {
-    resize: {
+  responsive_images: {
+    myTask: {
       options: {
-        width: 200
+        engine: 'im'
       },
       files: [{
         expand: true,
         src: ['images/source/*.{jpg,gif,png}'],
-        cwd: 'tmp/',
         dest: 'images/resized/'
       }]
     }
   },
+  //   image_resize: {
+  //   resize: {
+  //     options: {
+  //       width: 200
+  //     },
+  //     files: [{
+  //       expand: true,
+  //       src: ['images/source/*.{jpg,gif,png}'],
+  //       cwd: 'tmp/',
+  //       dest: 'images/resized/'
+  //     }]
+  //   }
+  // },
     imagemin: {
         dynamic: {
             options: {
@@ -112,8 +124,8 @@ module.exports = function(grunt) {
         },
 
         css: {
-            files: ['less/*.less'],
-            tasks: ['less'],
+            files: ['css/*.scss'],
+            tasks: ['sass'],
         }
     },
         browserSync: {
@@ -141,13 +153,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-autoprefixer');
-    grunt.loadNpmTasks('grunt-image-resize');
+    grunt.loadNpmTasks('grunt-responsive-images');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-sass');
 
-    grunt.registerTask('build', ['less', 'concat', 'uglify', 'autoprefixer']);
+    grunt.registerTask('build', ['sass', 'concat', 'uglify', 'autoprefixer']);
     grunt.registerTask('default', ["browserSync", "watch"]);
 };

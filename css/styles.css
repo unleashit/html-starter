@@ -1,23 +1,35 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic);
-
 body {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 1.1em;
-	line-height: 1.2em;
-}
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.1em;
+  line-height: 1.2em; }
+
 p, h1, h2, h3, h4, h5, ul, ol {
-	margin-bottom: 1em;
-}
-h1, h2, h3, h4, h5 {font-weight: bold;}
-h1 {font-size: 2em;}
-h2 {font-size: 1.6em; margin-top: 1.2em;}
-h3 {font-size: 1.4em;}
-h4 {font-size: 1.2em;}
-h5 {font-size: 1.2em;}
-ul, ol {margin-left: 45px;}
+  margin-bottom: 1em; }
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold; }
+
+h1 {
+  font-size: 2.2em; }
+
+h2 {
+  font-size: 1.98em;
+  margin-top: 1.2em; }
+
+h3 {
+  font-size: 1.76em; }
+
+h4 {
+  font-size: 1.54em; }
+
+h5 {
+  font-size: 1.1em; }
+
+ul, ol {
+  margin-left: 45px; }
+
 ul {
-	list-style-type: disc;
-}
+  list-style-type: disc; }
+
 ol {
-	list-style-type: decimal;
-}
+  list-style-type: decimal; }
