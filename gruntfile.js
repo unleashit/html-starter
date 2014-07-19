@@ -28,14 +28,11 @@ module.exports = function(grunt) {
     },
     autoprefixer: {
         options: {
-            browsers: ['Chrome > 10', 'Firefox > 14', 'ie > 7']
+            browsers: ['last 2 version', 'ie 8', 'ie 9']
            },
-        single_file: {
-        options: {
-          },
-          src: 'css/style.css',
-          dest: 'css/prefixed.css'
-        },
+        no_dest: {
+          src: 'css/styles.css',
+        }
       },
     less: {
       development: {
@@ -63,7 +60,8 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         options: {
-          compass: true
+          compass: false,
+          sourcemap: 'true'
         },
         files: {
           'css/styles.css': 'css/styles.scss'
@@ -84,27 +82,14 @@ module.exports = function(grunt) {
       files: [{
         expand: true,
         src: ['images/source/*.{jpg,gif,png}'],
-        dest: 'images/resized/'
+        dest: 'images/'
       }]
     }
   },
-  //   image_resize: {
-  //   resize: {
-  //     options: {
-  //       width: 200
-  //     },
-  //     files: [{
-  //       expand: true,
-  //       src: ['images/source/*.{jpg,gif,png}'],
-  //       cwd: 'tmp/',
-  //       dest: 'images/resized/'
-  //     }]
-  //   }
-  // },
     imagemin: {
         dynamic: {
             options: {
-                optimizationLevel: 3,
+                optimizationLevel: 4,
             },
             files: [{
                 expand: true,
@@ -116,7 +101,7 @@ module.exports = function(grunt) {
     },
     watch: {
         scripts: {
-            files: ['js/custom.js'],
+            files: ['js/scripts.js'],
             tasks: ['concat', 'uglify'],
             options: {
                 spawn: false,
@@ -125,19 +110,20 @@ module.exports = function(grunt) {
 
         css: {
             files: ['css/*.scss'],
-            tasks: ['sass'],
+            tasks: ['sass']
         }
     },
         browserSync: {
             dev: {
                 bsFiles: {
-                    src : [ 'css/*.css',
+                    src : [
+                      'css/*.css',
                       'js/*.js',
-                      'templates/*.php',
+                      '*.html'
                 ]},
                 options: {
                     watchTask: true,
-                    injectChanges: false,
+                    injectChanges: true,
                     ghostMode: {
                       clicks: false,
                       scroll: false,

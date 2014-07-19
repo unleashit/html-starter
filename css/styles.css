@@ -33,3 +33,11 @@ ul {
 
 ol {
   list-style-type: decimal; }
+
+.test {
+  box-shadow: 1px 1px 1px black;
+  border-radius: 4px;
+  text-shadow: 1px 2px 1px red;
+  opacity: .3; }
+
+/*# sourceMappingURL=styles.css.map */
