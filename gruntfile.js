@@ -1,3 +1,7 @@
+var bootstrap_path = 'bower_components/bootstrap-sass-official/assets/',
+  bootstrap_csspath = bootstrap_path + 'stylesheets',
+  bootstrap_jspath = bootstrap_path + 'javascripts/bootstrap/';
+
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -6,22 +10,27 @@ module.exports = function(grunt) {
       main: {
         files: [
           // copy bootstrap less
-          {expand: true, cwd: 'bower_components/bootstrap/less', src: ['**'], dest: 'libraries/bootstrap/less/'},
-          // copy bootstrap js
-          {expand: true, cwd: 'bower_components/bootstrap/js', src: ['**'], dest: 'libraries/bootstrap/js/'},
-          // copy font awesome less
-          {expand: true, cwd: 'bower_components/font-awesome/less', src: ['**'], dest: 'libraries/font-awesome/less'},
-          // copy font awesome fonts
-          {expand: true, cwd: 'bower_components/font-awesome/fonts', src: ['**'], dest: 'fonts/'},
+          {expand: true, cwd: bootstrap_csspath, src: ['**'], dest: 'scss/bootstrap/'}
         ]
       }
     },
     concat: {
         dist: {
             src: [
-                'js/custom.js',  // This specific file
-                'libraries/bootstrap/js/*.js' // All JS in the libs folder
-                
+               // bootstrap_jspath + '*.js', // All bootstrap JS
+                bootstrap_jspath + 'transition.js',
+                bootstrap_jspath + 'alert.js',
+                bootstrap_jspath + 'button.js',
+                bootstrap_jspath + 'carousel.js',
+                bootstrap_jspath + 'collapse.js',
+                bootstrap_jspath + 'dropdown.js',
+                bootstrap_jspath + 'modal.js',
+                bootstrap_jspath + 'tooltip.js',
+                bootstrap_jspath + 'popover.js',
+                bootstrap_jspath + 'scrollspy.js',
+                bootstrap_jspath + 'tab.js',
+                bootstrap_jspath + 'affix.js',
+                'js/custom.js' // This specific file
             ],
             dest: 'js/scripts.js',
         }
@@ -30,9 +39,12 @@ module.exports = function(grunt) {
         options: {
             browsers: ['last 2 version', 'ie 8', 'ie 9']
            },
-        no_dest: {
+             single_file: {
+        options: {
+          },
           src: 'css/styles.css',
-        }
+          dest: 'css/prefixed.css'
+        },
       },
     less: {
       development: {
@@ -64,7 +76,7 @@ module.exports = function(grunt) {
           sourcemap: 'true'
         },
         files: {
-          'css/styles.css': 'css/styles.scss'
+          'css/styles.css': 'scss/styles.scss'
         }
       }
     },
