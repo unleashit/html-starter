@@ -88,13 +88,27 @@ module.exports = function(grunt) {
     },
   responsive_images: {
     myTask: {
-      options: {
-        engine: 'im'
+        options: {
+          engine: 'im',
+          sizes: [{
+          name: 'small',
+          width: "25%",
+          quality: 80
+        },{
+          name: "medium",
+          width: "65%",
+          quality: 65
+        },{
+          name: "large",
+          width: "100%",
+          quality: 60
+        }]
       },
       files: [{
         expand: true,
-        src: ['images/source/*.{jpg,gif,png}'],
-        dest: 'images/'
+          cwd: 'images/source',
+          src: ['**/*.{png,jpg,gif}'],
+          custom_dest: 'images/resized/{%= name %}/'
       }]
     }
   },
