@@ -158,6 +158,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-sass');
 
-    grunt.registerTask('build', ['sass', 'concat', 'uglify', 'autoprefixer']);
+    grunt.registerTask('firstrun', ['copy', 'sass', 'concat', 'uglify']);
+    grunt.registerTask('build', ['sass', 'concat', 'uglify']);
     grunt.registerTask('default', ["browserSync", "watch"]);
 };
