@@ -1,5 +1,5 @@
 // Global scripts
 
-(function() {
+;(function() {
 	$('html').removeClass('no-js');
 })();

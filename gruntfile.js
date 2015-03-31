@@ -73,7 +73,7 @@ module.exports = function(grunt) {
       dist: {
         options: {
           compass: false,
-          sourcemap: 'true'
+          sourcemap: 'auto'
         },
         files: {
           'css/styles.css': 'scss/styles.scss'
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
         },
 
         css: {
-            files: ['css/*.scss'],
+            files: ['scss/*.scss'],
             tasks: ['sass']
         }
     },
@@ -171,8 +171,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-newer');
 
     grunt.registerTask('firstrun', ['copy', 'sass', 'concat', 'uglify']);
-    grunt.registerTask('build', ['sass', 'concat', 'uglify']);
+    grunt.registerTask('build', ['sass', 'newer:concat', 'newer:uglify']);
     grunt.registerTask('default', ["browserSync", "watch"]);
 };
