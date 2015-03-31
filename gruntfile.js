@@ -125,6 +125,14 @@ module.exports = function(grunt) {
             }]
         }
     },
+    sprite:{
+      all: {
+        src: 'images/sprites/*.png',
+        dest: 'images/spritesheet.png',
+        destCss: 'scss/_sprites.scss',
+        cssVarMap: function (sprite) { sprite.name = 'icon-' + sprite.name;}
+      }
+    },
     watch: {
         scripts: {
             files: ['js/scripts.js'],
@@ -171,9 +179,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-spritesmith');
     grunt.loadNpmTasks('grunt-newer');
 
     grunt.registerTask('firstrun', ['copy', 'sass', 'concat', 'uglify']);
+    grunt.registerTask('images', ['newer:imagemin', 'newer:responsive_images', 'newer:sprite']);
     grunt.registerTask('build', ['sass', 'newer:concat', 'newer:uglify']);
     grunt.registerTask('default', ["browserSync", "watch"]);
 };

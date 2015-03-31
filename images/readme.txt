@@ -1,3 +1,8 @@
-Put all images into Source folder. Use "grunt responsive-images" to create thumbnail sets as defined in gruntfile.js and/or "grunt imagemin" to reduce file size.
+Put all non-sprite images into Source folder.
 
-After running these commands, images will be copied to images/resized
+* run "grunt imagemin" to reduce file size.
+* run "grunt responsive-images" to create thumbnail sets as defined in gruntfile.js.
+
+Put sprite images into sprites folder.
+
+* run "grunt sprite" to create a single sprite image and scss.
