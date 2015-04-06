@@ -19,18 +19,18 @@ Available Grunt tasks:
 
 Available Grunt commands:
 
-####Grunt firstinstall
+####grunt firstinstall
 
 ```Use when first cloning repo. Runs Copy, Sass, Concat and Uglify```
 
-####Grunt build
+####grunt build
 
 ```Use to manually compile Sass and minify/concatenate JS```
 
-####Grunt Images
+####grunt images
 
 ```Use to optimize images, create sprites and/or image thumbnails```
 
-####Grunt
+####grunt
 
 ```Use during development. Turns on BrowserSync for live reloading, adds sass as a watch task```
