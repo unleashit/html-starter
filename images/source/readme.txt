@@ -1,1 +1,1 @@
-Put all source images here
+Put all source images here, except sprites.

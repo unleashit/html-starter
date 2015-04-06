@@ -1,6 +1,7 @@
 var bootstrap_path = 'bower_components/bootstrap-sass-official/assets/',
-  bootstrap_csspath = bootstrap_path + 'stylesheets',
-  bootstrap_jspath = bootstrap_path + 'javascripts/bootstrap/';
+    bootstrap_csspath = bootstrap_path + 'stylesheets',
+    bootstrap_jspath = bootstrap_path + 'javascripts/bootstrap/',
+    proxyUrl = "projects.io/sandbox/html-starter"; // important: change this to your server's url or 'false' for no proxy!
 
 module.exports = function(grunt) {
     grunt.initConfig({
@@ -30,9 +31,9 @@ module.exports = function(grunt) {
                 bootstrap_jspath + 'scrollspy.js',
                 bootstrap_jspath + 'tab.js',
                 bootstrap_jspath + 'affix.js',
-                'js/custom.js' // This specific file
+                'js/custom.js' // custom js
             ],
-            dest: 'js/scripts.js',
+            dest: 'js/scripts.js'
         }
     },
     autoprefixer: {
@@ -44,7 +45,7 @@ module.exports = function(grunt) {
           },
           src: 'css/styles.css',
           dest: 'css/prefixed.css'
-        },
+        }
       },
     less: {
       development: {
@@ -115,12 +116,31 @@ module.exports = function(grunt) {
     imagemin: {
         dynamic: {
             options: {
-                optimizationLevel: 4,
+                optimizationLevel: 4
             },
             files: [{
                 expand: true,
                 cwd: 'images/source',
                 src: ['**/*.{png,jpg,gif}'],
+                dest: 'images/'
+            }]
+        }
+    },
+    svgmin: {
+        options: {
+            plugins: [
+                {
+                    removeViewBox: false
+                }, {
+                    removeUselessStrokeAndFill: false
+                }
+            ]
+        },
+        dist: {
+            files: [{
+                expand: true,
+                cwd: 'images/source',
+                src: ['**/*.svg'],
                 dest: 'images/'
             }]
         }
@@ -138,7 +158,7 @@ module.exports = function(grunt) {
             files: ['js/scripts.js'],
             tasks: ['concat', 'uglify'],
             options: {
-                spawn: false,
+                spawn: false
             }
         },
 
@@ -156,34 +176,24 @@ module.exports = function(grunt) {
                       '*.html'
                 ]},
                 options: {
+                    proxy: proxyUrl,
                     watchTask: true,
                     injectChanges: true,
                     ghostMode: {
-                      clicks: false,
+                      clicks: true,
                       scroll: false,
-                      links: false,
+                      links: true,
                       forms: false
                   }
                 }
             }
-        },
+        }
 });
 
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-autoprefixer');
-    grunt.loadNpmTasks('grunt-responsive-images');
-    grunt.loadNpmTasks('grunt-contrib-imagemin');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-browser-sync');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-spritesmith');
-    grunt.loadNpmTasks('grunt-newer');
+    require('load-grunt-tasks')(grunt); // npm install --save-dev load-grunt-tasks
 
     grunt.registerTask('firstrun', ['copy', 'sass', 'concat', 'uglify']);
-    grunt.registerTask('images', ['newer:imagemin', 'newer:responsive_images', 'newer:sprite']);
+    grunt.registerTask('images', ['newer:imagemin', 'newer:svgmin', 'newer:responsive_images', 'newer:sprite']);
     grunt.registerTask('build', ['sass', 'newer:concat', 'newer:uglify']);
     grunt.registerTask('default', ["browserSync", "watch"]);
 };
