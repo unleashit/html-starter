@@ -1,7 +1,7 @@
-// Global styles
+@include sprites($spritesheet-sprites);
+
+/* Global styles */
 
 body {
-	font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
-
-@include sprites($spritesheet-sprites);
