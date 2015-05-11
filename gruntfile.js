@@ -4,6 +4,7 @@ var bootstrap_path = 'bower_components/bootstrap-sass-official/assets/',
     proxyUrl = "projects.io/sandbox/html-starter"; // important: change this to your server's url or 'false' for no proxy!
 
 module.exports = function(grunt) {
+    require('time-grunt')(grunt);
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 

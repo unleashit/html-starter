@@ -6654,6 +6654,7 @@ The `sprites` mixin generates identical output to the CSS template
 
 @include sprites($spritesheet-sprites);
 */
+/* Global styles */
 body {
   font-family: 'Open Sans', sans-serif; }
 
