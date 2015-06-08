@@ -14,8 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-sass-official": "^3.0",
     "font-awesome": "^4.0.3",
-    "d3": "~3.5.5"
+    "bootstrap-sass-official": "^3.3.4"
   }
 }
